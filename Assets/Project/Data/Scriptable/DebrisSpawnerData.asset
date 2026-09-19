@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312610a57ab59144eae7324dff997f3d, type: 3}
   m_Name: DebrisSpawnerData
   m_EditorClassIdentifier: 
-  spawnInterval: 1.2
+  spawnInterval: 1.8
   spawnHalfWidth: 7.5
   spawnY: 6
-  poolPrewarmCount: 6
+  poolPrewarmCount: 8

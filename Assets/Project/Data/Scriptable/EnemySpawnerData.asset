@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5441d4f07e9ab5b4e984ac71570bc5b6, type: 3}
   m_Name: EnemySpawnerData
   m_EditorClassIdentifier: 
-  spawnInterval: 1
+  spawnInterval: 1.3
   spawnHalfWidth: 7.5
   spawnY: 6
-  poolPrewarmCount: 10
+  poolPrewarmCount: 8

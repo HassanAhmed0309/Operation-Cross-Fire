@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DebrisData
   m_EditorClassIdentifier: 
   prefab: {fileID: 2905379592556099089, guid: 22a395e3cd44d3041a56c85800d73103, type: 3}
-  moveSpeed: 0.8
+  moveSpeed: 2
   health: 2
   scoreValue: 15

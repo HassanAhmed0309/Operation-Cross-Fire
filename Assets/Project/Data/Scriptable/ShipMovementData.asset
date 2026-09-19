@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShipMovementData
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  playfieldHalfWidth: 8.5
+  playfieldHalfWidth: 7.8
   boostDuration: 1
   boostSpeedMultiplier: 1.75
   boostCooldown: 4

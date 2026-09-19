@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BreachHazardData
   m_EditorClassIdentifier: 
   prefab: {fileID: 6802740817678408959, guid: 05a54afab6658c544bd0819a0135b8fe, type: 3}
-  moveSpeed: 0.6
+  moveSpeed: 1.5
   health: 3
   scoreValue: 25
