@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bdbe56fd94dfa43912ee122d7270ed, type: 3}
+  m_Name: WeaponData
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 3155036636652385991, guid: 5ba996a81f1bef74b83dfe64a79024e4, type: 3}
+  fireCooldown: 0.25
+  laserSpeed: 8
+  poolPrewarmCount: 8
