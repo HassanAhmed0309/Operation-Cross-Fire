@@ -66,7 +66,14 @@ public class GameBootstrapper : MonoBehaviour
         if (enemyData != null && enemySpawnerData != null && enemyData.prefab != null)
         {
             var enemyPool = new ObjectPool<Enemy>(enemyData.prefab, enemyPoolParent, enemySpawnerData.poolPrewarmCount);
-            ServiceLocator.Register<IEnemySpawnService>(new EnemySpawnService(enemyData, enemySpawnerData, enemyPool));
+
+            // Only prewarm a projectile pool if this enemy type actually fires - fireInterval stays
+            // 0-safe (never used) when projectilePrefab isn't set up yet.
+            IObjectPool<EnemyProjectile> enemyProjectilePool = enemyData.projectilePrefab != null
+                ? new ObjectPool<EnemyProjectile>(enemyData.projectilePrefab, enemyPoolParent, enemyData.projectilePoolPrewarmCount)
+                : null;
+
+            ServiceLocator.Register<IEnemySpawnService>(new EnemySpawnService(enemyData, enemySpawnerData, enemyPool, enemyProjectilePool));
         }
 
         if (debrisData != null && debrisSpawnerData != null && debrisData.prefab != null)

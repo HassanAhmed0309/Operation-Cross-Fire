@@ -16,3 +16,7 @@ MonoBehaviour:
   moveSpeed: 1
   health: 1
   scoreValue: 10
+  fireInterval: 1.5
+  projectileSpeed: 2
+  projectilePrefab: {fileID: 6684832712520788311, guid: e4e2a39e474f554479dcae44d0d79891, type: 3}
+  projectilePoolPrewarmCount: 6

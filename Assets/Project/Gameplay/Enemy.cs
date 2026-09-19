@@ -11,7 +11,13 @@ public class Enemy : MonoBehaviour, IDamageable, IShipContactHazard
     int scoreValue;
     IObjectPool<Enemy> pool;
 
-    public void Launch(Vector3 position, float moveSpeed, int health, int scoreValue, IObjectPool<Enemy> pool)
+    float fireInterval;
+    float projectileSpeed;
+    IObjectPool<EnemyProjectile> projectilePool;
+    float timeUntilNextShot;
+
+    public void Launch(Vector3 position, float moveSpeed, int health, int scoreValue, IObjectPool<Enemy> pool,
+        float fireInterval, float projectileSpeed, IObjectPool<EnemyProjectile> projectilePool)
     {
         transform.position = position;
         transform.rotation = Quaternion.identity;
@@ -19,6 +25,10 @@ public class Enemy : MonoBehaviour, IDamageable, IShipContactHazard
         this.health = health;
         this.scoreValue = scoreValue;
         this.pool = pool;
+        this.fireInterval = fireInterval;
+        this.projectileSpeed = projectileSpeed;
+        this.projectilePool = projectilePool;
+        timeUntilNextShot = fireInterval;
     }
 
     void Update()
@@ -26,7 +36,21 @@ public class Enemy : MonoBehaviour, IDamageable, IShipContactHazard
         transform.position += Vector3.down * moveSpeed * Time.deltaTime;
 
         if (transform.position.y < cleanupBoundaryY)
+        {
             pool.Release(this);
+            return;
+        }
+
+        if (fireInterval <= 0f)
+            return;
+
+        timeUntilNextShot -= Time.deltaTime;
+        if (timeUntilNextShot <= 0f)
+        {
+            timeUntilNextShot = fireInterval;
+            EnemyProjectile projectile = projectilePool.Get();
+            projectile.Launch(transform.position, Vector2.down, projectileSpeed, projectilePool);
+        }
     }
 
     // Called by PlayerLaser when it hits this enemy.

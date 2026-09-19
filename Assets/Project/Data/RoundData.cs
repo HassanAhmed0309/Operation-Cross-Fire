@@ -10,4 +10,5 @@ public class RoundData : ScriptableObject
     public float warningLeadTime = 3f;
     public float alertEnemySpeedMultiplier = 1.25f;
     public float criticalSpawnIntervalMultiplier = 0.70f;
+    public float criticalProjectileSpeedMultiplier = 1.50f;
 }

@@ -62,8 +62,9 @@ public class RoundService : IRoundService
         // Alert's enemy-speed bump carries forward into Critical (not restated there, not reset).
         float speedMultiplier = newPhase == Phase.Patrol ? 1f : data.alertEnemySpeedMultiplier;
         float spawnIntervalMultiplier = newPhase == Phase.Critical ? data.criticalSpawnIntervalMultiplier : 1f;
+        float projectileSpeedMultiplier = newPhase == Phase.Critical ? data.criticalProjectileSpeedMultiplier : 1f;
 
-        EventBus.Publish(new PhaseChangedSignal(newPhase, speedMultiplier, spawnIntervalMultiplier));
+        EventBus.Publish(new PhaseChangedSignal(newPhase, speedMultiplier, spawnIntervalMultiplier, projectileSpeedMultiplier));
         EventBus.Publish(new QuantumFluxTriggeredSignal());
 
 #if UNITY_EDITOR
