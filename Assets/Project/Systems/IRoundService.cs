@@ -2,6 +2,7 @@
 public interface IRoundService
 {
     float ElapsedTime { get; }
+    float TimeRemaining { get; }
     Phase CurrentPhase { get; }
     bool HasEnded { get; }
 

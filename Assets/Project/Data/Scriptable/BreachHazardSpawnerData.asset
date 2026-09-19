@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8907c4e16ee1e814b8502e01635a7146, type: 3}
   m_Name: BreachHazardSpawnerData
   m_EditorClassIdentifier: 
-  spawnInterval: 1.5
+  spawnInterval: 2
   spawnHalfWidth: 7.5
   spawnY: 6
   poolPrewarmCount: 4

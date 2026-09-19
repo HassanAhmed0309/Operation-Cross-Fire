@@ -20,6 +20,7 @@ public class RoundService : IRoundService
     }
 
     public float ElapsedTime => elapsedTime;
+    public float TimeRemaining => Mathf.Max(0f, data.roundDuration - elapsedTime);
     public Phase CurrentPhase => currentPhase;
     public bool HasEnded => hasEnded;
 

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   prefab: {fileID: 4336788268385638577, guid: 0a3fe79ad0dd6d549b6649e1b12097c9, type: 3}
-  moveSpeed: 1
+  moveSpeed: 0.5
   health: 1
   scoreValue: 10
-  fireInterval: 1.5
-  projectileSpeed: 2
+  fireInterval: 2
+  projectileSpeed: 3
   projectilePrefab: {fileID: 6684832712520788311, guid: e4e2a39e474f554479dcae44d0d79891, type: 3}
   projectilePoolPrewarmCount: 6
