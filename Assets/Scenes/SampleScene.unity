@@ -389,6 +389,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &666918081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 666918082}
+  m_Layer: 0
+  m_Name: Breach Hazard Pool Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &666918082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666918081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &735497851
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +474,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854050991}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1099361187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099361188}
+  m_Layer: 0
+  m_Name: Debris Pool Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1099361188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099361187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -507,6 +569,8 @@ GameObject:
   - component: {fileID: 1689902512}
   - component: {fileID: 1689902513}
   - component: {fileID: 1689902514}
+  - component: {fileID: 1689902516}
+  - component: {fileID: 1689902515}
   m_Layer: 0
   m_Name: Game Bootstrapper
   m_TagString: Untagged
@@ -552,6 +616,12 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: cded7fd9107af1e4096b486b6159679d, type: 2}
   enemySpawnerData: {fileID: 11400000, guid: b2d354ca8d1461949823020ae960fceb, type: 2}
   enemyPoolParent: {fileID: 735497852}
+  debrisData: {fileID: 11400000, guid: ddea973dec7630940a8bcbe4cca53216, type: 2}
+  debrisSpawnerData: {fileID: 11400000, guid: 9f98a5140ed308f4ba2d43621a196a70, type: 2}
+  debrisPoolParent: {fileID: 1099361188}
+  breachHazardData: {fileID: 11400000, guid: 3e0b50f94e957c84eab3d74c83ea08c6, type: 2}
+  breachHazardSpawnerData: {fileID: 11400000, guid: 8f9ce858634a8cc418bb3476133ff916, type: 2}
+  breachHazardPoolParent: {fileID: 666918082}
   roundData: {fileID: 11400000, guid: 49e8d0b77604eee47a172c720afb024a, type: 2}
 --- !u!114 &1689902513
 MonoBehaviour:
@@ -575,6 +645,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa2de76a1bf6bc246b0314013557a732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1689902515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689902510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694fc0f88acd54647b24e18fde4734a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1689902516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689902510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64eda5b1848f5a4a9ed1bf2e226ed69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1916950595
@@ -921,6 +1015,8 @@ SceneRoots:
   - {fileID: 1916950596}
   - {fileID: 854050992}
   - {fileID: 735497852}
+  - {fileID: 1099361188}
+  - {fileID: 666918082}
   - {fileID: 8456746}
   - {fileID: 2122718603}
   - {fileID: 166291257}

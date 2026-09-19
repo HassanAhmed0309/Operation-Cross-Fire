@@ -16,12 +16,12 @@ public class ShipHullCollider : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.TryGetComponent(out Enemy enemy))
+        if (!other.TryGetComponent(out IShipContactHazard hazard))
             return;
 
         if (!shieldService.IsActive)
             hullService.ApplyDamage(1);
 
-        enemy.OnHitShip();
+        hazard.OnHitShip();
     }
 }

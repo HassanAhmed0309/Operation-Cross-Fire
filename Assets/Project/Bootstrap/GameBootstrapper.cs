@@ -27,6 +27,16 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] EnemySpawnerData enemySpawnerData;
     [SerializeField] Transform enemyPoolParent;
 
+    [Header("Debris")]
+    [SerializeField] DebrisData debrisData;
+    [SerializeField] DebrisSpawnerData debrisSpawnerData;
+    [SerializeField] Transform debrisPoolParent;
+
+    [Header("Breach Hazard")]
+    [SerializeField] BreachHazardData breachHazardData;
+    [SerializeField] BreachHazardSpawnerData breachHazardSpawnerData;
+    [SerializeField] Transform breachHazardPoolParent;
+
     [Header("Round")]
     [SerializeField] RoundData roundData;
 
@@ -57,6 +67,18 @@ public class GameBootstrapper : MonoBehaviour
         {
             var enemyPool = new ObjectPool<Enemy>(enemyData.prefab, enemyPoolParent, enemySpawnerData.poolPrewarmCount);
             ServiceLocator.Register<IEnemySpawnService>(new EnemySpawnService(enemyData, enemySpawnerData, enemyPool));
+        }
+
+        if (debrisData != null && debrisSpawnerData != null && debrisData.prefab != null)
+        {
+            var debrisPool = new ObjectPool<Debris>(debrisData.prefab, debrisPoolParent, debrisSpawnerData.poolPrewarmCount);
+            ServiceLocator.Register<IDebrisSpawnService>(new DebrisSpawnService(debrisData, debrisSpawnerData, debrisPool));
+        }
+
+        if (breachHazardData != null && breachHazardSpawnerData != null && breachHazardData.prefab != null)
+        {
+            var breachHazardPool = new ObjectPool<BreachHazard>(breachHazardData.prefab, breachHazardPoolParent, breachHazardSpawnerData.poolPrewarmCount);
+            ServiceLocator.Register<IBreachHazardSpawnService>(new BreachHazardSpawnService(breachHazardData, breachHazardSpawnerData, breachHazardPool));
         }
 
         ServiceLocator.Register<IScoreService>(new ScoreService());

@@ -1,17 +1,17 @@
 using UnityEngine;
 
-// Pooled enemy: falls straight down, destroyed by the player laser, damages the ship on contact.
+// Pooled debris: falls straight down, destroyed by the player laser, damages the ship on contact.
 [RequireComponent(typeof(Collider2D))]
-public class Enemy : MonoBehaviour, IDamageable, IShipContactHazard
+public class Debris : MonoBehaviour, IDamageable, IShipContactHazard
 {
     [SerializeField] float cleanupBoundaryY = -6.5f; // below the bottom of the playfield
 
     int health;
     float moveSpeed;
     int scoreValue;
-    IObjectPool<Enemy> pool;
+    IObjectPool<Debris> pool;
 
-    public void Launch(Vector3 position, float moveSpeed, int health, int scoreValue, IObjectPool<Enemy> pool)
+    public void Launch(Vector3 position, float moveSpeed, int health, int scoreValue, IObjectPool<Debris> pool)
     {
         transform.position = position;
         transform.rotation = Quaternion.identity;
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour, IDamageable, IShipContactHazard
             pool.Release(this);
     }
 
-    // Called by PlayerLaser when it hits this enemy.
+    // Called by PlayerLaser when it hits this debris.
     public void Hit()
     {
         health--;
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IDamageable, IShipContactHazard
         }
     }
 
-    // Called by ShipHullCollider when this enemy touches the ship.
+    // Called by ShipHullCollider when this debris touches the ship.
     public void OnHitShip()
     {
         pool.Release(this);

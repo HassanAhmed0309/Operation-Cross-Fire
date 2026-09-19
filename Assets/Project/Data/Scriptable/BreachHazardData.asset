@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5441d4f07e9ab5b4e984ac71570bc5b6, type: 3}
-  m_Name: EnemySpawnerData
+  m_Script: {fileID: 11500000, guid: 2903fcb59b1192549b20bff68da28356, type: 3}
+  m_Name: BreachHazardData
   m_EditorClassIdentifier: 
-  spawnInterval: 0.8
-  spawnHalfWidth: 7.5
-  spawnY: 6
-  poolPrewarmCount: 10
+  prefab: {fileID: 6802740817678408959, guid: 05a54afab6658c544bd0819a0135b8fe, type: 3}
+  moveSpeed: 1.5
+  health: 3
+  scoreValue: 25

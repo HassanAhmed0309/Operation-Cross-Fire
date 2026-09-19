@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Pooled player laser: travels in a fixed direction, releases itself past the cleanup boundary,
-// destroys whatever Enemy it hits.
+// destroys whatever IDamageable it hits.
 [RequireComponent(typeof(Collider2D))]
 public class PlayerLaser : MonoBehaviour
 {
@@ -31,10 +31,10 @@ public class PlayerLaser : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.TryGetComponent(out Enemy enemy))
+        if (!other.TryGetComponent(out IDamageable damageable))
             return;
 
-        enemy.Hit();
+        damageable.Hit();
         pool.Release(this);
     }
 }

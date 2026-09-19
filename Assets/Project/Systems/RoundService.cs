@@ -16,6 +16,7 @@ public class RoundService : IRoundService
     {
         this.data = data;
         EventBus.Subscribe<ShipDestroyedSignal>(OnShipDestroyed);
+        EventBus.Subscribe<BreachHazardEscapedSignal>(OnBreachHazardEscaped);
     }
 
     public float ElapsedTime => elapsedTime;
@@ -71,6 +72,8 @@ public class RoundService : IRoundService
     }
 
     void OnShipDestroyed(ShipDestroyedSignal signal) => EndRound(won: false);
+
+    void OnBreachHazardEscaped(BreachHazardEscapedSignal signal) => EndRound(won: false);
 
     void EndRound(bool won)
     {

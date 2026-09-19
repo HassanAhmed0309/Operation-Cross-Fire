@@ -64,7 +64,7 @@ At every Quantum Flux transition (20s, 40s): cancel active movement/firing/Boost
 |---|---|---|---|---|
 | Enemy | red square, moves down, may fire projectiles | 1 | 1 hull point | 10 |
 | Debris | grey circle, moves down | 2 | 1 hull point | 15 |
-| Breach hazard | orange diamond, appears from Alert onward; reaching the bottom is an instant loss | 3 | 1 hull point | 25 |
+| Breach hazard | orange diamond, appears from Alert onward; reaching the bottom is an instant loss | 3 | none — not in the GDD's ship-collision list, only vs. the bottom boundary | 25 |
 | Enemy projectile | red rectangle, fired by enemies | — (despawns on hit/cleanup) | 1 hull point | — |
 | Player laser | fired by the ship toward the reticle | — | n/a | — |
 
