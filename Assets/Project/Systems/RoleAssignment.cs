@@ -24,4 +24,10 @@ public class RoleAssignment : MonoBehaviour, IRoleAssignment
         roles[(int)PlayerId.P2] = Role.Gunner;
         RolesChanged?.Invoke();
     }
+
+    void OnEnable() => EventBus.Subscribe<QuantumFluxTriggeredSignal>(OnQuantumFluxTriggered);
+
+    void OnDisable() => EventBus.Unsubscribe<QuantumFluxTriggeredSignal>(OnQuantumFluxTriggered);
+
+    void OnQuantumFluxTriggered(QuantumFluxTriggeredSignal signal) => Swap();
 }

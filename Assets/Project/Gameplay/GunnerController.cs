@@ -1,6 +1,8 @@
 using UnityEngine;
 
 // Reads the current Gunner intent each frame: moves the reticle, fires through Systems.
+// The reticle is tracked as an offset from the ship, not an absolute world point - otherwise
+// Pilot movement would silently change where the Gunner is currently aiming relative to the ship.
 public class GunnerController : MonoBehaviour
 {
     [SerializeField] float touchAimSensitivity = 0.02f; // world units per pixel of drag - not in GDD, tune by feel
@@ -9,7 +11,7 @@ public class GunnerController : MonoBehaviour
     IShipInputRouter inputRouter;
     IWeaponService weaponService;
     IShieldService shieldService;
-    Vector3 reticleWorldPosition;
+    Vector2 aimOffset;
 
     void Awake()
     {
@@ -21,7 +23,7 @@ public class GunnerController : MonoBehaviour
         inputRouter = ServiceLocator.Get<IShipInputRouter>();
         weaponService = ServiceLocator.Get<IWeaponService>();
         shieldService = ServiceLocator.Get<IShieldService>();
-        reticleWorldPosition = transform.position + Vector3.up * 2f;
+        aimOffset = Vector2.up * 2f;
     }
 
     void Update()
@@ -35,14 +37,15 @@ public class GunnerController : MonoBehaviour
         {
             Vector3 screenPoint = gunner.AimScreenPosition;
             screenPoint.z = -cachedCamera.transform.position.z; // distance to the z=0 gameplay plane
-            reticleWorldPosition = cachedCamera.ScreenToWorldPoint(screenPoint);
+            Vector3 worldPoint = cachedCamera.ScreenToWorldPoint(screenPoint);
+            aimOffset = worldPoint - transform.position;
         }
         else if (gunner.AimDelta != Vector2.zero)
         {
-            reticleWorldPosition += (Vector3)(gunner.AimDelta * touchAimSensitivity);
+            aimOffset += gunner.AimDelta * touchAimSensitivity;
         }
 
-        weaponService.SetAimWorldPosition(reticleWorldPosition);
+        weaponService.SetAimWorldPosition(transform.position + (Vector3)aimOffset);
 
         if (gunner.FireHeld)
             weaponService.TryFire();

@@ -27,6 +27,9 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] EnemySpawnerData enemySpawnerData;
     [SerializeField] Transform enemyPoolParent;
 
+    [Header("Round")]
+    [SerializeField] RoundData roundData;
+
     void Awake()
     {
         if (shipInputRouter != null)
@@ -57,6 +60,9 @@ public class GameBootstrapper : MonoBehaviour
         }
 
         ServiceLocator.Register<IScoreService>(new ScoreService());
+
+        if (roundData != null)
+            ServiceLocator.Register<IRoundService>(new RoundService(roundData));
 
         // Register further Systems-layer services here as they're built.
     }

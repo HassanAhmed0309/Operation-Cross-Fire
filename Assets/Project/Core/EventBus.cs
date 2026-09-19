@@ -33,8 +33,21 @@ public static class EventBus
 
     public static void Publish<T>(T signal)
     {
-        if (_handlers.TryGetValue(typeof(T), out var existing))
-            ((Action<T>)existing).Invoke(signal);
+        if (!_handlers.TryGetValue(typeof(T), out var existing))
+            return;
+
+        // Invoke each subscriber independently - one throwing must not stop the rest from running.
+        foreach (Delegate handler in existing.GetInvocationList())
+        {
+            try
+            {
+                ((Action<T>)handler).Invoke(signal);
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
+            }
+        }
     }
 
     /// <summary>Drops every subscriber. Call from test [SetUp] to avoid state leaking between tests.</summary>

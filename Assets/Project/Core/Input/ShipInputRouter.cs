@@ -33,6 +33,22 @@ public class ShipInputRouter : MonoBehaviour, IShipInputRouter
             SetGameplayEnabled(true);
     }
 
+    void OnEnable()
+    {
+        EventBus.Subscribe<QuantumFluxTriggeredSignal>(OnQuantumFluxTriggered);
+        EventBus.Subscribe<RoundEndedSignal>(OnRoundEnded);
+    }
+
+    void OnDisable()
+    {
+        EventBus.Unsubscribe<QuantumFluxTriggeredSignal>(OnQuantumFluxTriggered);
+        EventBus.Unsubscribe<RoundEndedSignal>(OnRoundEnded);
+    }
+
+    void OnQuantumFluxTriggered(QuantumFluxTriggeredSignal signal) => CancelAll();
+
+    void OnRoundEnded(RoundEndedSignal signal) => SetGameplayEnabled(false);
+
     void Update()
     {
         PilotIntent pilot = default;

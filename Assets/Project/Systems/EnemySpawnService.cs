@@ -9,6 +9,8 @@ public class EnemySpawnService : IEnemySpawnService
 
     float timeUntilNextSpawn;
     bool spawningEnabled = true;
+    float speedMultiplier = 1f;
+    float spawnIntervalMultiplier = 1f;
 
     public EnemySpawnService(EnemyData enemyData, EnemySpawnerData spawnerData, IObjectPool<Enemy> pool)
     {
@@ -16,6 +18,9 @@ public class EnemySpawnService : IEnemySpawnService
         this.spawnerData = spawnerData;
         this.pool = pool;
         timeUntilNextSpawn = spawnerData.spawnInterval;
+
+        EventBus.Subscribe<PhaseChangedSignal>(OnPhaseChanged);
+        EventBus.Subscribe<RoundEndedSignal>(OnRoundEnded);
     }
 
     public void SetSpawningEnabled(bool isEnabled) => spawningEnabled = isEnabled;
@@ -29,12 +34,20 @@ public class EnemySpawnService : IEnemySpawnService
         if (timeUntilNextSpawn > 0f)
             return;
 
-        timeUntilNextSpawn = spawnerData.spawnInterval;
+        timeUntilNextSpawn = spawnerData.spawnInterval * spawnIntervalMultiplier;
 
         float x = Random.Range(-spawnerData.spawnHalfWidth, spawnerData.spawnHalfWidth);
         Vector3 position = new Vector3(x, spawnerData.spawnY, 0f);
 
         Enemy enemy = pool.Get();
-        enemy.Launch(position, enemyData.moveSpeed, enemyData.health, enemyData.scoreValue, pool);
+        enemy.Launch(position, enemyData.moveSpeed * speedMultiplier, enemyData.health, enemyData.scoreValue, pool);
     }
+
+    void OnPhaseChanged(PhaseChangedSignal signal)
+    {
+        speedMultiplier = signal.EnemySpeedMultiplier;
+        spawnIntervalMultiplier = signal.SpawnIntervalMultiplier;
+    }
+
+    void OnRoundEnded(RoundEndedSignal signal) => SetSpawningEnabled(false);
 }
