@@ -8,6 +8,7 @@ public class GunnerController : MonoBehaviour
     Camera cachedCamera;
     IShipInputRouter inputRouter;
     IWeaponService weaponService;
+    IShieldService shieldService;
     Vector3 reticleWorldPosition;
 
     void Awake()
@@ -19,6 +20,7 @@ public class GunnerController : MonoBehaviour
     {
         inputRouter = ServiceLocator.Get<IShipInputRouter>();
         weaponService = ServiceLocator.Get<IWeaponService>();
+        shieldService = ServiceLocator.Get<IShieldService>();
         reticleWorldPosition = transform.position + Vector3.up * 2f;
     }
 
@@ -45,6 +47,10 @@ public class GunnerController : MonoBehaviour
         if (gunner.FireHeld)
             weaponService.TryFire();
 
+        if (gunner.ShieldPressed)
+            shieldService.TryActivate();
+
         weaponService.Tick(Time.deltaTime);
+        shieldService.Tick(Time.deltaTime);
     }
 }

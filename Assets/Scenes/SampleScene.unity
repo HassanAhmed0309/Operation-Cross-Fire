@@ -366,6 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1107181485}
+  - component: {fileID: 1107181486}
   m_Layer: 0
   m_Name: -----SCRIPTS-----
   m_TagString: Untagged
@@ -382,12 +383,24 @@ Transform:
   m_GameObject: {fileID: 1107181484}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.85139644, y: 3.6737714, z: -0.016650211}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107181486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107181484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd624edea8d98de46952990649ba810d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1689902510
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +451,8 @@ MonoBehaviour:
   shipMovementData: {fileID: 11400000, guid: 7d917fb568c0f7c4b818bdedb5e19fcd, type: 2}
   weaponData: {fileID: 11400000, guid: e9207f4a5299e914ca51a4518952dffa, type: 2}
   laserPoolParent: {fileID: 854050992}
+  hullData: {fileID: 11400000, guid: f60efabd3337959419fe299b3609db85, type: 2}
+  shieldData: {fileID: 11400000, guid: 0d399975c0f1cb644882bc97bed0e07b, type: 2}
 --- !u!1 &1916950595
 GameObject:
   m_ObjectHideFlags: 0

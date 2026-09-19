@@ -18,6 +18,10 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] WeaponData weaponData;
     [SerializeField] Transform laserPoolParent;
 
+    [Header("Hull + Shield")]
+    [SerializeField] HullData hullData;
+    [SerializeField] ShieldData shieldData;
+
     void Awake()
     {
         if (shipInputRouter != null)
@@ -34,6 +38,12 @@ public class GameBootstrapper : MonoBehaviour
             var laserPool = new ObjectPool<PlayerLaser>(weaponData.laserPrefab, laserPoolParent, weaponData.poolPrewarmCount);
             ServiceLocator.Register<IWeaponService>(new WeaponService(shipTransform, weaponData, laserPool));
         }
+
+        if (hullData != null)
+            ServiceLocator.Register<IHullService>(new HullService(hullData));
+
+        if (shieldData != null)
+            ServiceLocator.Register<IShieldService>(new ShieldService(shieldData));
 
         // Register further Systems-layer services here as they're built.
     }
