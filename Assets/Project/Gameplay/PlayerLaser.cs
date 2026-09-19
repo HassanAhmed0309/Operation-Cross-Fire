@@ -1,7 +1,8 @@
 using UnityEngine;
 
-// Pooled player laser: travels in a fixed direction, releases itself past the cleanup boundary.
-// No collision/damage yet - nothing to hit exists until enemies/debris/hazards land.
+// Pooled player laser: travels in a fixed direction, releases itself past the cleanup boundary,
+// destroys whatever Enemy it hits.
+[RequireComponent(typeof(Collider2D))]
 public class PlayerLaser : MonoBehaviour
 {
     [SerializeField] float cleanupBoundary = 12f; // world units from origin, either axis
@@ -26,5 +27,14 @@ public class PlayerLaser : MonoBehaviour
         Vector3 position = transform.position;
         if (Mathf.Abs(position.x) > cleanupBoundary || Mathf.Abs(position.y) > cleanupBoundary)
             pool.Release(this);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.TryGetComponent(out Enemy enemy))
+            return;
+
+        enemy.Hit();
+        pool.Release(this);
     }
 }

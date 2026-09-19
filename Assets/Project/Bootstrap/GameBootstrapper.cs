@@ -22,6 +22,11 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] HullData hullData;
     [SerializeField] ShieldData shieldData;
 
+    [Header("Enemies")]
+    [SerializeField] EnemyData enemyData;
+    [SerializeField] EnemySpawnerData enemySpawnerData;
+    [SerializeField] Transform enemyPoolParent;
+
     void Awake()
     {
         if (shipInputRouter != null)
@@ -44,6 +49,14 @@ public class GameBootstrapper : MonoBehaviour
 
         if (shieldData != null)
             ServiceLocator.Register<IShieldService>(new ShieldService(shieldData));
+
+        if (enemyData != null && enemySpawnerData != null && enemyData.prefab != null)
+        {
+            var enemyPool = new ObjectPool<Enemy>(enemyData.prefab, enemyPoolParent, enemySpawnerData.poolPrewarmCount);
+            ServiceLocator.Register<IEnemySpawnService>(new EnemySpawnService(enemyData, enemySpawnerData, enemyPool));
+        }
+
+        ServiceLocator.Register<IScoreService>(new ScoreService());
 
         // Register further Systems-layer services here as they're built.
     }
