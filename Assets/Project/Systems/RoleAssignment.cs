@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 // Single source of truth for which player currently holds which role.
-public class RoleAssignment : MonoBehaviour
+public class RoleAssignment : MonoBehaviour, IRoleAssignment
 {
     readonly Role[] roles = { Role.Pilot, Role.Gunner };
 

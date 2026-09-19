@@ -7,9 +7,24 @@ using UnityEngine;
 [DefaultExecutionOrder(-1000)]
 public class GameBootstrapper : MonoBehaviour
 {
-    private void Awake()
+    [SerializeField] ShipInputRouter shipInputRouter;
+    [SerializeField] RoleAssignment roleAssignment;
+
+    [Header("Ship movement")]
+    [SerializeField] Transform shipTransform;
+    [SerializeField] ShipMovementData shipMovementData;
+
+    void Awake()
     {
-        // Register Systems-layer services here as they're built, e.g.:
-        // ServiceLocator.Register<IShipMovementService>(new ShipMovementService(shipData));
+        if (shipInputRouter != null)
+            ServiceLocator.Register<IShipInputRouter>(shipInputRouter);
+
+        if (roleAssignment != null)
+            ServiceLocator.Register<IRoleAssignment>(roleAssignment);
+
+        if (shipTransform != null && shipMovementData != null)
+            ServiceLocator.Register<IShipMovementService>(new ShipMovementService(shipTransform, shipMovementData));
+
+        // Register further Systems-layer services here as they're built.
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 // The only thing gameplay reads input from. Runs before gameplay scripts and merges every source into role intents.
 [DefaultExecutionOrder(-100)]
-public class ShipInputRouter : MonoBehaviour
+public class ShipInputRouter : MonoBehaviour, IShipInputRouter
 {
     [SerializeField] KeyboardMouseInputSource keyboardMouseSource;
     [SerializeField] TouchInputSource touchSource;
